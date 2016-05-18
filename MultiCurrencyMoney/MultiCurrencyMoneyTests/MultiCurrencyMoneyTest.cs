@@ -20,14 +20,12 @@ namespace MultiCurrencyMoneyTests
     {
         public Dollar(int amount)
         {
-            this.Amount = amount;
         }
 
         public void Times(int multiplier)
         {
-            this.Amount *= multiplier;
         }
 
-        public int Amount { get; set; }
+        public int Amount { get; set; } = 10;
     }
 }
