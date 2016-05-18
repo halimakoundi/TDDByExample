@@ -1,14 +1,15 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace MultiCurrencyMoneyTests
 {
     [TestFixture]
-    public class    MultiCurrencyMoneyTest
+    public class MultiCurrencyMoneyTest
     {
         [Test]
         public void TestMultiplication()
         {
-            var five= new Dollar(5);
+            var five = new Dollar(5);
 
             var product = five.Times(2);
 
@@ -18,9 +19,16 @@ namespace MultiCurrencyMoneyTests
 
             Assert.That(product.Amount, Is.EqualTo(15));
         }
+
+        [Test]
+        public void TestEquality()
+        {
+            Assert.That(new Dollar(5).Equals(new Dollar(5)), Is.EqualTo(true));
+            Assert.That(new Dollar(5).Equals(new Dollar(6)), Is.EqualTo(false));
+        }
     }
 
-    public class Dollar 
+    public class Dollar
     {
         public Dollar(int amount)
         {
@@ -30,6 +38,12 @@ namespace MultiCurrencyMoneyTests
         public Dollar Times(int multiplier)
         {
             return new Dollar(this.Amount * multiplier);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var dollar = (Dollar) obj;
+            return this.Amount == dollar.Amount;
         }
 
         public int Amount { get; set; }
