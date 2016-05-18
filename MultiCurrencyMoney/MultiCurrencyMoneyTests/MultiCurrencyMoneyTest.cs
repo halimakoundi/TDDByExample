@@ -47,6 +47,6 @@ namespace MultiCurrencyMoneyTests
             return this.Amount == dollar.Amount;
         }
 
-        public int Amount { get; set; }
+        private int Amount { get; set; }
     }
 }
