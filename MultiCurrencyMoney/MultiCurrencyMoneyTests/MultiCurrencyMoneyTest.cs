@@ -13,11 +13,11 @@ namespace MultiCurrencyMoneyTests
 
             var product = five.Times(2);
 
-            Assert.That(product.Amount, Is.EqualTo(10));
+            Assert.That(product, Is.EqualTo(new Dollar(10)));
 
             product = five.Times(3);
 
-            Assert.That(product.Amount, Is.EqualTo(15));
+            Assert.That(product, Is.EqualTo(new Dollar(15)));
         }
 
         [Test]
@@ -43,6 +43,7 @@ namespace MultiCurrencyMoneyTests
         public override bool Equals(object obj)
         {
             var dollar = (Dollar) obj;
+
             return this.Amount == dollar.Amount;
         }
 
