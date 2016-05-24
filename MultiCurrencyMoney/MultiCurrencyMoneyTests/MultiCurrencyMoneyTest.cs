@@ -32,6 +32,8 @@ namespace MultiCurrencyMoneyTests
         {
             Assert.That(new Dollar(5).Equals(new Dollar(5)), Is.EqualTo(true));
             Assert.That(new Dollar(5).Equals(new Dollar(6)), Is.EqualTo(false));
+            Assert.That(new Franc(5).Equals(new Franc(5)), Is.EqualTo(true));
+            Assert.That(new Franc(5).Equals(new Franc(6)), Is.EqualTo(false));
         }
     }
 }
