@@ -37,10 +37,14 @@ namespace MultiCurrencyMoneyTests
         [Test]
         public void TestSimpleAddition()
         {
-            var tenDollar   =  Money.Dollar(10);
-            var sum = Money.Dollar(5).Plus(Money.Dollar(5));
+            var tenDollar = Money.Dollar(10);
 
-            Assert.That(sum, Is.EqualTo(tenDollar));
+            var five = Money.Dollar(5);
+            Expression sum = five.Plus(five);
+            var bank = new Bank();
+            var reduced = bank.Reduce(sum, "USD");
+
+            Assert.That(reduced, Is.EqualTo(tenDollar));
         }
     }
 }

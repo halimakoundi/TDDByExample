@@ -1,8 +1,6 @@
-﻿using NUnit.Framework.Constraints;
-
-namespace MultiCurrencyMoneyTests
+﻿namespace MultiCurrencyMoneyTests
 {
-    public class Money
+    public class Money : Expression
     {
         protected int Amount { get; set; }
         protected string Currency { get; set; }
@@ -33,6 +31,11 @@ namespace MultiCurrencyMoneyTests
             return new Money(Amount * multiplier, Currency);
         }
 
+        public Expression Plus(Money addend)
+        {
+            return new Money(Amount + addend.Amount, Currency);
+        }
+
         public override bool Equals(object obj)
         {
             var money = (Money)obj;
@@ -43,11 +46,6 @@ namespace MultiCurrencyMoneyTests
         public override string ToString()
         {
             return Amount + " " + Currency;
-        }
-
-        public Money Plus(Money addend)
-        {
-            return new Money(Amount + addend.Amount, Currency);
         }
     }
 }
