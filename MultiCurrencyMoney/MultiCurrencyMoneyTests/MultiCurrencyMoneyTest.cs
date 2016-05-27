@@ -9,7 +9,6 @@ namespace MultiCurrencyMoneyTests
         public void TestMultiplication()
         {
             var five = Money.Dollar(5);
-
             var product = five.Times(2);
 
             Assert.That(product, Is.EqualTo(Money.Dollar(10)));
@@ -33,6 +32,15 @@ namespace MultiCurrencyMoneyTests
             var currencyCode = Money.Dollar(1).GetCurrency();
 
             Assert.That(currencyCode, Is.EqualTo("USD"));
+        }
+
+        [Test]
+        public void TestSimpleAddition()
+        {
+            var tenDollar   =  Money.Dollar(10);
+            var sum = Money.Dollar(5).Plus(Money.Dollar(5));
+
+            Assert.That(sum, Is.EqualTo(tenDollar));
         }
     }
 }

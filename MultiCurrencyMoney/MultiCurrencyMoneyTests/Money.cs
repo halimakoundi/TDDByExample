@@ -1,4 +1,6 @@
-﻿namespace MultiCurrencyMoneyTests
+﻿using NUnit.Framework.Constraints;
+
+namespace MultiCurrencyMoneyTests
 {
     public class Money
     {
@@ -41,6 +43,11 @@
         public override string ToString()
         {
             return Amount + " " + Currency;
+        }
+
+        public Money Plus(Money addend)
+        {
+            return new Money(Amount + addend.Amount, Currency);
         }
     }
 }
