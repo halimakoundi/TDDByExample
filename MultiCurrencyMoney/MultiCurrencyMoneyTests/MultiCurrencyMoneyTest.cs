@@ -36,5 +36,13 @@ namespace MultiCurrencyMoneyTests
             Assert.That(Money.Franc(5).Equals(Money.Franc(6)), Is.False);
             Assert.That(Money.Franc(5).Equals(Money.Dollar(5)), Is.False);
         }
+
+        [Test]
+        public void TestCurrency()
+        {
+            var currencyCode = Money.Dollar(1).Currency();
+
+            Assert.That(currencyCode, Is.EqualTo("USD"));
+        }
     }
 }
