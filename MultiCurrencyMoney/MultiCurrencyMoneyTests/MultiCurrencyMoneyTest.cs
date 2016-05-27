@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq.Expressions;
+using NUnit.Framework;
 
 namespace MultiCurrencyMoneyTests
 {
@@ -20,20 +21,10 @@ namespace MultiCurrencyMoneyTests
         }
 
         [Test]
-        public void TestFrancMultiplication()
-        {
-            var fiveFranc   = Money.Franc(5);
-
-            Assert.That(Money.Franc(10), Is.EqualTo(fiveFranc.Times(2)));
-        }
-
-        [Test]
         public void TestEquality()
         {
             Assert.That(Money.Dollar(5).Equals(Money.Dollar(5)), Is.True);
             Assert.That(Money.Dollar(5).Equals(Money.Dollar(6)), Is.False);
-            Assert.That(Money.Franc(5).Equals(Money.Franc(5)), Is.True);
-            Assert.That(Money.Franc(5).Equals(Money.Franc(6)), Is.False);
             Assert.That(Money.Franc(5).Equals(Money.Dollar(5)), Is.False);
         }
 

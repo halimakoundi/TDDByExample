@@ -4,9 +4,9 @@
     {
         public Franc(int amount, string currency) : base(amount, currency) { }
 
-        public override Money Times(int multiplier)
+        public  Money Times(int multiplier)
         {
-            return Money.Franc(this.Amount * multiplier);
+            return new Money(this.Amount * multiplier, Currency);
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿namespace MultiCurrencyMoneyTests
 {
-    public abstract class Money
+    public class Money
     {
         protected int Amount { get; set; }
         protected string Currency { get; set; }
 
-        protected Money(int amount, string currency)
+        public Money(int amount, string currency)
         {
             this.Amount = amount;
             this.Currency = currency;
@@ -13,26 +13,34 @@
 
         public static Money Dollar(int amount)
         {
-            return new Dollar(amount, "USD");
+            return new Money(amount, "USD");
         }
 
         public static Money Franc(int amount)
         {
-            return new Franc(amount, "CHF");
-        }
-
-        public abstract Money Times(int multiplier);
-
-        public override bool Equals(object obj)
-        {
-            var money = (Money)obj;
-
-            return this.Amount == money.Amount && GetType() == obj.GetType();
+            return new Money(amount, "CHF");
         }
 
         public string GetCurrency()
         {
             return Currency;
+        }
+
+        public Money Times(int multiplier)
+        {
+            return new Money(Amount * multiplier, Currency);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var money = (Money)obj;
+
+            return this.Amount == money.Amount && Currency.Equals(money.Currency);
+        }
+
+        public override string ToString()
+        {
+            return Amount + " " + Currency;
         }
     }
 }
