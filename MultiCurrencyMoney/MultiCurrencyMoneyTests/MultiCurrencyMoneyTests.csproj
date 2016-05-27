@@ -54,8 +54,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Dollar.cs" />
-    <Compile Include="Franc.cs" />
     <Compile Include="Money.cs" />
     <Compile Include="MultiCurrencyMoneyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
