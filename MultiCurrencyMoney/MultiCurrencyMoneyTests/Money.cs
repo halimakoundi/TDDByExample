@@ -3,15 +3,22 @@
     public abstract class Money
     {
         protected int Amount { get; set; }
+        protected string Currency { get; set; }
+
+        protected Money(int amount, string currency)
+        {
+            this.Amount = amount;
+            this.Currency = currency;
+        }
 
         public static Money Dollar(int amount)
         {
-            return new Dollar(amount);
+            return new Dollar(amount, "USD");
         }
 
         public static Money Franc(int amount)
         {
-            return new Franc(amount);
+            return new Franc(amount, "CHF");
         }
 
         public abstract Money Times(int multiplier);
@@ -23,6 +30,9 @@
             return this.Amount == money.Amount && GetType() == obj.GetType();
         }
 
-        public abstract string Currency();
+        public string GetCurrency()
+        {
+            return Currency;
+        }
     }
 }

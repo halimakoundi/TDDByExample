@@ -40,7 +40,7 @@ namespace MultiCurrencyMoneyTests
         [Test]
         public void TestCurrency()
         {
-            var currencyCode = Money.Dollar(1).Currency();
+            var currencyCode = Money.Dollar(1).GetCurrency();
 
             Assert.That(currencyCode, Is.EqualTo("USD"));
         }
