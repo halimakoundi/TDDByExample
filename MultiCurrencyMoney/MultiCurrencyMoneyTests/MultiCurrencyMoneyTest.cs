@@ -108,5 +108,32 @@ namespace MultiCurrencyMoneyTests
 
             Assert.That(Money.Dollar(10), Is.EqualTo(result));
         }
+
+        [Test]
+        public void TestSumPlusMoney()
+        {
+            var bank=new Bank();
+            bank.AddRate("CHF","USD",2);
+            var fiveDollar=Money.Dollar(5);
+            var tenFrancs=Money.Franc(10);
+            var sum =new Sum(fiveDollar, tenFrancs).Plus(fiveDollar);
+
+            var result  = bank.Reduce(sum, "USD");
+
+            Assert.That(Money.Dollar(15),Is.EqualTo(result));
+        }
+
+        [Test]
+        public void TestSumTimes()
+        {
+            var bank=new Bank();
+            bank.AddRate("CHF","USD",2);
+            var fiveDollars=Money.Dollar(5);
+            var tenFrancs   =Money.Franc(10);
+            var sum=new Sum(fiveDollars,tenFrancs).Times(2);
+            var resut= bank.Reduce(sum,"USD");
+            Assert.That(Money.Dollar(20),Is.EqualTo(resut));
+        }
+
     }
 }
