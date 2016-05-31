@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Constraints;
 
 namespace MultiCurrencyMoneyTests
 {
@@ -59,8 +60,25 @@ namespace MultiCurrencyMoneyTests
             Assert.That(fiveDollar, Is.EqualTo(sum.Addend));
         }
 
+        [Test]
+        public void TestReduceSum()
+        {
+            var sum = new Sum(Money.Dollar(3),Money.Dollar(4) );
+            var bank = new Bank();
 
+            var result = bank.Reduce(sum, "USD");
 
+            Assert.That(Money.Dollar(7), Is.EqualTo(result));
+        }
 
+        [Test]
+        public void TestReduceMoney()
+        {
+            var bank=new Bank();
+
+            var result= bank.Reduce(Money.Dollar(1),"USD");
+
+            Assert.That(Money.Dollar(1), Is.EqualTo(result));
+        }
     }
 }

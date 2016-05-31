@@ -2,7 +2,7 @@
 {
     public class Money : Expression
     {
-        protected int Amount { get; set; }
+        public int Amount { get; set; }
         protected string Currency { get; set; }
 
         public Money(int amount, string currency)
@@ -41,6 +41,11 @@
             var money = (Money)obj;
 
             return this.Amount == money.Amount && Currency.Equals(money.Currency);
+        }
+
+        public Money Reduce(string to)
+        {
+            return this;
         }
 
         public override string ToString()
