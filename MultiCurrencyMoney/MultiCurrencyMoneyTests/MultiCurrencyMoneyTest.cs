@@ -46,5 +46,21 @@ namespace MultiCurrencyMoneyTests
 
             Assert.That(reduced, Is.EqualTo(tenDollar));
         }
+
+        [Test]
+        public void TestPlusReturnsSum()
+        {
+            Money fiveDollar = Money.Dollar(5);
+
+            Expression result = fiveDollar.Plus(fiveDollar);
+            Sum sum = (Sum) result;
+            
+            Assert.That(fiveDollar, Is.EqualTo(sum.Augend));
+            Assert.That(fiveDollar, Is.EqualTo(sum.Addend));
+        }
+
+
+
+
     }
 }
