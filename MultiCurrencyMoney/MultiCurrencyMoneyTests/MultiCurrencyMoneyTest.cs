@@ -54,8 +54,8 @@ namespace MultiCurrencyMoneyTests
             Money fiveDollar = Money.Dollar(5);
 
             Expression result = fiveDollar.Plus(fiveDollar);
-            Sum sum = (Sum) result;
-            
+            Sum sum = (Sum)result;
+
             Assert.That(fiveDollar, Is.EqualTo(sum.Augend));
             Assert.That(fiveDollar, Is.EqualTo(sum.Addend));
         }
@@ -63,7 +63,7 @@ namespace MultiCurrencyMoneyTests
         [Test]
         public void TestReduceSum()
         {
-            var sum = new Sum(Money.Dollar(3),Money.Dollar(4) );
+            var sum = new Sum(Money.Dollar(3), Money.Dollar(4));
             var bank = new Bank();
 
             var result = bank.Reduce(sum, "USD");
@@ -74,11 +74,26 @@ namespace MultiCurrencyMoneyTests
         [Test]
         public void TestReduceMoney()
         {
-            var bank=new Bank();
+            var bank = new Bank();
 
-            var result= bank.Reduce(Money.Dollar(1),"USD");
+            var result = bank.Reduce(Money.Dollar(1), "USD");
 
             Assert.That(Money.Dollar(1), Is.EqualTo(result));
+        }
+
+        [Test]
+        public void TestReduceMoneyWithDifferentCurrencies()
+        {
+            var bank = new Bank();
+            bank.AddRate("CHF", "USD", 2);
+            var result = bank.Reduce(Money.Franc(2), "USD");
+            Assert.That(Money.Dollar(1), Is.EqualTo(result));
+        }
+
+        [Test]
+        public void TestidentityRate()
+        {
+            Assert.That(1,Is.EqualTo(new Bank().Rate("USD","USD")));
         }
     }
 }

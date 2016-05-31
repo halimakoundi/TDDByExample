@@ -43,9 +43,10 @@
             return this.Amount == money.Amount && Currency.Equals(money.Currency);
         }
 
-        public Money Reduce(string to)
+        public Money Reduce(Bank bank,string to)
         {
-            return this;
+            var rate = bank.Rate(Currency, to);
+            return new Money(Amount / rate, to);
         }
 
         public override string ToString()

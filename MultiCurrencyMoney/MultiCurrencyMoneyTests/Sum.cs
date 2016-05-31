@@ -13,7 +13,7 @@ namespace MultiCurrencyMoneyTests
         public Money Augend { get; set; }
         public Money Addend { get; set; }
 
-        public Money Reduce(string to)
+        public Money Reduce(Bank bank,string to)
         {
             var amount = Augend.Amount + Addend.Amount;
             return new Money(amount, to);
